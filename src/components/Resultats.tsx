@@ -2,7 +2,7 @@ import { Trophy } from "lucide-react";
 
 const Resultats = () => {
   return (
-    <div>
+    <div className="mb-6">
       {/* Titre */}
       <div className="flex flex-col items-center justify-center gap-1 mb-6">
         <h2 className="text-2xl font-bold">Tes résultats</h2>
@@ -12,7 +12,7 @@ const Resultats = () => {
       </div>
 
       {/* card de Resultats */}
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-md">
+      <div className="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-sm">
         <div className="flex gap-2 mb-6">
             <Trophy className="text-orange-400" />
             <h2 className="font-semibold">Moyennes par matière</h2>

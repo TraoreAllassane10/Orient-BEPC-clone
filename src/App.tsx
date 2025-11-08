@@ -1,9 +1,11 @@
+import { FileDown, Lock, RotateCcw } from "lucide-react";
 import "./App.css";
 import CardAnglais from "./components/cards/CardAnglais";
 import CardFrancais from "./components/cards/CardFrancais";
 import CardMath from "./components/cards/CardMath";
 import CardPhysique from "./components/cards/CardPhysique";
 import Hero from "./components/Hero";
+import Moyenne from "./components/Moyenne";
 import Resultats from "./components/Resultats";
 
 function App() {
@@ -30,6 +32,28 @@ function App() {
           </div>
 
           <Resultats />
+
+          <Moyenne />
+
+          <div className="mt-4 flex items-center justify-center gap-2 mb-6">
+            <Lock className="text-green-500" size={15} />
+            <span className="text-sm">
+              Toutes tes données restent sur ton appareil et ne sont jamais
+              envoyées en ligne
+            </span>
+          </div>
+
+          <div className="flex items-center justify-center">
+            <button className="bg-linear-to-r from-orange-500 to-orange-300 text-white flex place-items-center gap-2 shadow-sm hover:opacity-85">
+              <FileDown size={20} />
+              Télécharger les resultats en PDF
+            </button>
+
+            <button className="hover:bg-orange-100 flex gap-2 place-items-center">
+              <RotateCcw />
+              Réinitialiser toutes les données
+            </button>
+          </div>
         </div>
       </section>
     </>
