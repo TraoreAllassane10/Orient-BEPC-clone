@@ -7,8 +7,129 @@ import CardPhysique from "./components/cards/CardPhysique";
 import Hero from "./components/Hero";
 import Moyenne from "./components/Moyenne";
 import Resultats from "./components/Resultats";
+import { useEffect, useState } from "react";
+
+interface State {
+  t1: number | null;
+  t2: number | null;
+  t3: number | null;
+  bepc: number | null;
+  oral?: number | null;
+}
 
 function App() {
+  const [math, setMath] = useState<State>({
+    t1: null,
+    t2: null,
+    t3: null,
+    bepc: null,
+  });
+
+  const [francais, setFrancais] = useState<State>({
+    t1: null,
+    t2: null,
+    t3: null,
+    bepc: null,
+  });
+
+  const [physique, setPhysique] = useState<State>({
+    t1: null,
+    t2: null,
+    t3: null,
+    bepc: null,
+  });
+
+  const [anglais, setAnglais] = useState<State>({
+    t1: null,
+    t2: null,
+    t3: null,
+    bepc: null,
+    oral: null,
+  });
+
+  const [moyenneMath, setMoyenneMath] = useState();
+  const [moyenneFrancais, setMoyeenneFrancais] = useState();
+  const [moyennePhysique, setMoyennePhysique] = useState();
+  const [moyenneAnglais, setMoyenneAnglais] = useState();
+
+  const [moyenneOrientation, setMoyenneOrientation] = useState();
+
+  // Fonction de calcule de moyenne anulle
+  const calculeMoyenneAnnulle = (t1: number, t2: number, t3: number) => {
+    return (t1 + t2 * 2 + t3 * 2) / 5;
+  };
+
+  const calculeMoyenne = () => {
+    // Calcule des moyennes annuelles
+    const moyenneAnnulleMath = calculeMoyenneAnnulle(
+      Number(math.t1),
+      Number(math.t2),
+      Number(math.t3)
+    );
+    const moyenneAnnulleFrancais = calculeMoyenneAnnulle(
+      Number(francais.t1),
+      Number(francais.t2),
+      Number(francais.t3)
+    );
+    const moyenneAnnullePhysique = calculeMoyenneAnnulle(
+      Number(physique.t1),
+      Number(physique.t2),
+      Number(physique.t3)
+    );
+    const moyenneAnnulleAnglais = calculeMoyenneAnnulle(
+      Number(anglais.t1),
+      Number(anglais.t2),
+      Number(anglais.t3)
+    );
+
+    setMoyenneMath(moyenneAnnulleMath);
+    setMoyeenneFrancais(moyenneAnnulleFrancais);
+    setMoyennePhysique(moyenneAnnullePhysique);
+    setMoyenneAnglais(moyenneAnnulleAnglais);
+
+    // Les totaux : (moyenne annuelle + bepc) * 2
+    const totalMath = 2 * (moyenneAnnulleMath + Number(math.bepc));
+    const totalFrancais = 2 * (moyenneAnnulleFrancais + Number(francais.bepc));
+    const totalPhysique = moyenneAnnullePhysique + Number(physique.bepc);
+    const totalAnglais =
+      moyenneAnnulleAnglais + (Number(anglais.bepc) + Number(anglais.oral)) / 2;
+
+    // Total general
+    const totalGeneral =
+      totalMath + totalFrancais + totalPhysique + totalAnglais;
+
+    // Calcule de moyenne d'orientation
+    const moyenne = totalGeneral / 12;
+
+    setMoyenneOrientation(moyenne);
+
+    console.log(moyenne);
+  };
+
+  useEffect(() => {
+    const verification =
+      math.t1 !== null &&
+      math.t2 !== null &&
+      math.t3 !== null &&
+      math.bepc !== null &&
+      francais.t1 !== null &&
+      francais.t2 !== null &&
+      francais.t3 !== null &&
+      francais.bepc !== null &&
+      physique.t1 !== null &&
+      physique.t2 !== null &&
+      physique.t3 !== null &&
+      physique.bepc !== null &&
+      anglais.t1 !== null &&
+      anglais.t2 !== null &&
+      anglais.t3 !== null &&
+      anglais.bepc !== null;
+
+    if (verification) {
+      calculeMoyenne();
+    }
+  }, [math, physique, francais, anglais]);
+
   return (
     <>
       <Hero />
@@ -25,15 +146,21 @@ function App() {
         <div className="max-w-4xl mx-auto">
           {/* Les cards de matière */}
           <div className="grid grid-cols-2 gap-6 mb-8">
-            <CardMath />
-            <CardFrancais />
-            <CardPhysique />
-            <CardAnglais />
+            <CardMath data={math} setData={setMath} />
+            <CardFrancais data={francais} setData={setFrancais} />
+            <CardPhysique data={physique} setData={setPhysique} />
+            <CardAnglais data={anglais} setData={setAnglais} />
           </div>
 
-          <Resultats />
+          <Resultats
+            moyenneMath={moyenneMath}
+            moyenneFrancais={moyenneFrancais}
+            moyennePhysique={moyennePhysique}
+            moyenneAnglais={moyenneAnglais}
+            moyenneOrientation={moyenneOrientation}
+          />
 
-          <Moyenne />
+          <Moyenne moyenneOrientation={moyenneOrientation} />
 
           <div className="mt-4 flex items-center justify-center gap-2 mb-6">
             <Lock className="text-green-500" size={15} />

@@ -1,37 +1,48 @@
-import { Globe } from "lucide-react"
+import { Globe } from "lucide-react";
 
-
-const CardAnglais = () => {
+const CardAnglais = ({ data, setData }) => {
   return (
-     <div className="bg-white p-6 rounded-lg shadow-sm">
+    <div className="bg-white p-6 rounded-lg shadow-sm">
       {/* Titre */}
       <div className="flex place-items-center gap-2 mb-6">
         <div className="bg-green-500 p-2 rounded-md">
           <Globe className="text-white" />
         </div>
-        <h4 className="font-bold"> Français </h4>
+        <h4 className="font-bold"> Anglais </h4>
       </div>
 
       <div className="grid grid-cols-3">
         <div className="flex flex-col gap-1">
-          <label htmlFor="" className="font-medium">1er Trimestre</label>
+          <label htmlFor="" className="font-medium">
+            1er Trimestre
+          </label>
           <input
+            value={data.t1}
+            onChange={(e) => setData({ ...data, t1: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="" className="font-medium">2eme Trimestre</label>
+          <label htmlFor="" className="font-medium">
+            2eme Trimestre
+          </label>
           <input
+            value={data.t2}
+            onChange={(e) => setData({ ...data, t2: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
           />
         </div>
 
         <div className="flex flex-col gap-1">
-          <label htmlFor="" className="font-medium">3eme Trimestre</label>
+          <label htmlFor="" className="font-medium">
+            3eme Trimestre
+          </label>
           <input
+            value={data.t3}
+            onChange={(e) => setData({ ...data, t3: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
           />
@@ -40,17 +51,33 @@ const CardAnglais = () => {
 
       <hr className="border border-slate-100 my-4" />
 
-      <div className="">
+      <div className="grid grid-cols-2 gap-2">
         <div className="flex flex-col gap-1">
-          <label htmlFor="" className="font-medium">Note BEPC</label>
+          <label htmlFor="" className="font-medium">
+            Note BEPC
+          </label>
           <input
+            value={data.bepc}
+            onChange={(e) => setData({ ...data, bepc: e.target.value })}
+            type="number"
+            className=" border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label htmlFor="" className="font-medium">
+            Oral BEPC
+          </label>
+          <input
+            value={data.oral}
+            onChange={(e) => setData({ ...data, oral: e.target.value })}
             type="number"
             className=" border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CardAnglais
+export default CardAnglais;
