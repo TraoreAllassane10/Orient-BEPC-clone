@@ -1,4 +1,4 @@
-import { Trophy } from "lucide-react";
+import { Goal, Trophy } from "lucide-react";
 
 const Resultats = () => {
   return (
@@ -10,6 +10,15 @@ const Resultats = () => {
           Calcul automatique selon la méthode officielle de la DOB
         </p>
       </div>
+
+        {/* card d'avant resultat */}
+      {/* <div className="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-sm">
+        <div className="flex flex-col items-center justify-center gap-2 mb-6">
+          <Goal size={50} className="text-gray-400"/>
+            <h2 className="font-medium text-lg text-gray-400">Remplis toutes les matières</h2>
+            <p className="text-sm text-gray-400">Tes résultats apparaîtront ici une fois que tu auras saisi toutes tes notes.</p>
+        </div>
+      </div> */}
 
       {/* card de Resultats */}
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-sm">
