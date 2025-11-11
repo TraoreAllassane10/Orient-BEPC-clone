@@ -1,12 +1,20 @@
 import { Goal, Trophy } from "lucide-react";
 
+interface ResultatProps {
+  moyenneMath: number | undefined;
+  moyenneFrancais: number | undefined;
+  moyennePhysique: number | undefined;
+  moyenneAnglais: number | undefined;
+  moyenneOrientation: number | undefined;
+}
+
 const Resultats = ({
   moyenneMath,
   moyenneFrancais,
   moyennePhysique,
   moyenneAnglais,
   moyenneOrientation,
-}) => {
+} : ResultatProps) => {
   return (
     <div className="mb-6">
       {/* Titre */}
@@ -15,7 +23,7 @@ const Resultats = ({
         <p>Calcul automatique selon la méthode officielle de la DOB</p>
       </div>
 
-      {moyenneOrientation > 0 ? (
+      {moyenneOrientation !== undefined && moyenneOrientation > 0 ? (
         //  Card de Resultats
         <div className="max-w-4xl mx-auto bg-white p-6 rounded-2xl shadow-sm">
           <div className="flex gap-2 mb-6">
@@ -26,26 +34,26 @@ const Resultats = ({
           <div className="grid grid-cols-2 gap-6">
             <div className="bg-gray-100 p-4 flex justify-between rounded-md font-medium">
               <span>Mathématiques</span>
-              <span className={`${moyenneMath >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`} >{moyenneMath}/20</span>
+              <span className={`${moyenneMath !== undefined && moyenneMath >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`} >{moyenneMath}/20</span>
             </div>
 
             <div className="bg-gray-100 p-4 flex justify-between rounded-md font-medium">
               <span>Français </span>
-              <span className={`${moyenneFrancais >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
+              <span className={`${moyenneFrancais !== undefined && moyenneFrancais >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
                 {moyenneFrancais}/20
               </span>
             </div>
 
             <div className="bg-gray-100 p-4 flex justify-between rounded-md font-medium">
               <span>Sciences Physiques</span>
-              <span className={`${moyennePhysique >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
+              <span className={`${moyennePhysique !== undefined && moyennePhysique >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
                 {moyennePhysique}/20
               </span>
             </div>
 
             <div className="bg-gray-100 p-4 flex justify-between rounded-md font-medium">
               <span>Anglais</span>
-              <span className={`${moyenneAnglais >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
+              <span className={`${moyenneAnglais !== undefined && moyenneAnglais >= 10 ? "text-green-500" : "text-red-500"}  "font-bold"`}>
                 {moyenneAnglais}/20
               </span>
             </div>

@@ -1,6 +1,18 @@
 import { BookText } from "lucide-react";
 
-const CardFrancais = ({ data, setData }) => {
+interface FrancaisProps {
+  data: Data;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
+
+interface Data {
+  t1: string;
+  t2: string;
+  t3: string;
+  bepc: string;
+}
+
+const CardFrancais = ({ data, setData } : FrancaisProps) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm">
       {/* Titre */}
@@ -17,7 +29,7 @@ const CardFrancais = ({ data, setData }) => {
             1er Trimestre
           </label>
           <input
-            value={data.t1}
+            value={data.t1 || ""}
             onChange={(e) => setData({ ...data, t1: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
@@ -29,7 +41,7 @@ const CardFrancais = ({ data, setData }) => {
             2eme Trimestre
           </label>
           <input
-            value={data.t2}
+            value={data.t2 || ""}
             onChange={(e) => setData({ ...data, t2: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
@@ -41,7 +53,7 @@ const CardFrancais = ({ data, setData }) => {
             3eme Trimestre
           </label>
           <input
-            value={data.t3}
+            value={data.t3 || ""}
             onChange={(e) => setData({ ...data, t3: e.target.value })}
             type="number"
             className="w-[80%] border border-slate-300 rounded-md p-3 outline-orange-300 text-center"
@@ -57,7 +69,7 @@ const CardFrancais = ({ data, setData }) => {
             Note BEPC
           </label>
           <input
-            value={data.bepc}
+            value={data.bepc || ""}
             onChange={(e) => setData({ ...data, bepc: e.target.value })}
             type="number"
             className=" border border-slate-300 rounded-md p-3 outline-orange-300 text-center"

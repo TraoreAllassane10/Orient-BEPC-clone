@@ -10,49 +10,49 @@ import Resultats from "./components/Resultats";
 import { useEffect, useState } from "react";
 
 interface State {
-  t1: number | null;
-  t2: number | null;
-  t3: number | null;
-  bepc: number | null;
-  oral?: number | null;
+  t1: string;
+  t2: string;
+  t3: string;
+  bepc: string;
+  oral?: string;
 }
 
 function App() {
   const [math, setMath] = useState<State>({
-    t1: null,
-    t2: null,
-    t3: null,
-    bepc: null,
+    t1: "",
+    t2: "",
+    t3: "",
+    bepc: "",
   });
 
   const [francais, setFrancais] = useState<State>({
-    t1: null,
-    t2: null,
-    t3: null,
-    bepc: null,
+    t1: "",
+    t2: "",
+    t3: "",
+    bepc: "",
   });
 
   const [physique, setPhysique] = useState<State>({
-    t1: null,
-    t2: null,
-    t3: null,
-    bepc: null,
+    t1: "",
+    t2: "",
+    t3: "",
+    bepc: "",
   });
 
   const [anglais, setAnglais] = useState<State>({
-    t1: null,
-    t2: null,
-    t3: null,
-    bepc: null,
-    oral: null,
+    t1: "",
+    t2: "",
+    t3: "",
+    bepc: "",
+    oral: "",
   });
 
-  const [moyenneMath, setMoyenneMath] = useState();
-  const [moyenneFrancais, setMoyeenneFrancais] = useState();
-  const [moyennePhysique, setMoyennePhysique] = useState();
-  const [moyenneAnglais, setMoyenneAnglais] = useState();
+  const [moyenneMath, setMoyenneMath] = useState<number>();
+  const [moyenneFrancais, setMoyeenneFrancais] = useState<number>();
+  const [moyennePhysique, setMoyennePhysique] = useState<number>();
+  const [moyenneAnglais, setMoyenneAnglais] = useState<number>();
 
-  const [moyenneOrientation, setMoyenneOrientation] = useState();
+  const [moyenneOrientation, setMoyenneOrientation] = useState<number>();
 
   // Fonction de calcule de moyenne anulle
   const calculeMoyenneAnnulle = (t1: number, t2: number, t3: number) => {
@@ -61,17 +61,17 @@ function App() {
 
   const calculeMoyenne = () => {
     // Calcule des moyennes annuelles
-    const moyenneAnnulleMath = calculeMoyenneAnnulle(
+    const moyenneAnnulleMath: number = calculeMoyenneAnnulle(
       Number(math.t1),
       Number(math.t2),
       Number(math.t3)
     );
-    const moyenneAnnulleFrancais = calculeMoyenneAnnulle(
+    const moyenneAnnulleFrancais: number = calculeMoyenneAnnulle(
       Number(francais.t1),
       Number(francais.t2),
       Number(francais.t3)
     );
-    const moyenneAnnullePhysique = calculeMoyenneAnnulle(
+    const moyenneAnnullePhysique: number = calculeMoyenneAnnulle(
       Number(physique.t1),
       Number(physique.t2),
       Number(physique.t3)
@@ -130,6 +130,19 @@ function App() {
     }
   }, [math, physique, francais, anglais]);
 
+  const reinitialisation = () => {
+    setMath({ t1: "", t2: "", t3: "", bepc: "" });
+    setFrancais({ t1: "", t2: "", t3: "", bepc: "" });
+    setPhysique({ t1: "", t2: "", t3: "", bepc: "" });
+    setAnglais({ t1: "", t2: "", t3: "", bepc: "", oral: "" });
+
+    setMoyenneMath(undefined);
+    setMoyeenneFrancais(undefined);
+    setMoyennePhysique(undefined);
+    setMoyenneAnglais(undefined);
+    setMoyenneOrientation(undefined);
+  };
+
   return (
     <>
       <Hero />
@@ -176,7 +189,10 @@ function App() {
               Télécharger les resultats en PDF
             </button>
 
-            <button className="hover:bg-orange-100 flex gap-2 place-items-center">
+            <button
+              onClick={reinitialisation}
+              className="hover:bg-orange-100 flex gap-2 place-items-center"
+            >
               <RotateCcw />
               Réinitialiser toutes les données
             </button>

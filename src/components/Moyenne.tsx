@@ -1,7 +1,11 @@
 import { CircleAlert, CircleCheckBig, Divide } from "lucide-react";
 
-const Moyenne = ({ moyenneOrientation }) => {
-  console.log("moyenneOrientation " +moyenneOrientation)
+interface MoyenneProps {
+  moyenneOrientation: number | undefined;
+}
+
+const Moyenne = ({ moyenneOrientation } : MoyenneProps) => {
+
   return (
     <div>
       {moyenneOrientation !== undefined && (

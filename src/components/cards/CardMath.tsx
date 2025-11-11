@@ -1,7 +1,18 @@
 import { Calculator } from "lucide-react";
 
-const CardMath = ({ data, setData }) => {
+interface MathProps {
+  data: Data;
+  setData: React.Dispatch<React.SetStateAction<Data>>;
+}
 
+interface Data {
+  t1: string;
+  t2: string;
+  t3: string;
+  bepc: string;
+}
+
+const CardMath = ({ data, setData }: MathProps) => {
   return (
     <div className="bg-white p-6 rounded-lg shadow-sm">
       {/* Titre */}
@@ -18,7 +29,7 @@ const CardMath = ({ data, setData }) => {
             1er Trimestre
           </label>
           <input
-            value={data.t1}
+            value={data.t1 || ""}
             onChange={(e) => {
               setData({ ...data, t1: e.target.value });
             }}
@@ -32,7 +43,7 @@ const CardMath = ({ data, setData }) => {
             2eme Trimestre
           </label>
           <input
-            value={data.t2}
+            value={data.t2 || ""}
             onChange={(e) => {
               setData({ ...data, t2: e.target.value });
             }}
@@ -46,7 +57,7 @@ const CardMath = ({ data, setData }) => {
             3eme Trimestre
           </label>
           <input
-            value={data.t3}
+            value={data.t3 || ""}
             onChange={(e) => {
               setData({ ...data, t3: e.target.value });
             }}
@@ -64,7 +75,7 @@ const CardMath = ({ data, setData }) => {
             Note BEPC
           </label>
           <input
-            value={data.bepc}
+            value={data.bepc || ""}
             onChange={(e) => {
               setData({ ...data, bepc: e.target.value });
             }}
