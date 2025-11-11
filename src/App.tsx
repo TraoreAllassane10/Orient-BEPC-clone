@@ -102,8 +102,6 @@ function App() {
     const moyenne = totalGeneral / 12;
 
     setMoyenneOrientation(moyenne);
-
-    console.log(moyenne);
   };
 
   useEffect(() => {
@@ -157,34 +155,39 @@ function App() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Les cards de matière */}
-          <div className="grid grid-cols-2 gap-6 mb-8">
-            <CardMath data={math} setData={setMath} />
-            <CardFrancais data={francais} setData={setFrancais} />
-            <CardPhysique data={physique} setData={setPhysique} />
-            <CardAnglais data={anglais} setData={setAnglais} />
-          </div>
+          <div className="to-print">
+            {/* Les cards de matière */}
+            <div className="grid grid-cols-2 gap-6 mb-8">
+              <CardMath data={math} setData={setMath} />
+              <CardFrancais data={francais} setData={setFrancais} />
+              <CardPhysique data={physique} setData={setPhysique} />
+              <CardAnglais data={anglais} setData={setAnglais} />
+            </div>
 
-          <Resultats
-            moyenneMath={moyenneMath}
-            moyenneFrancais={moyenneFrancais}
-            moyennePhysique={moyennePhysique}
-            moyenneAnglais={moyenneAnglais}
-            moyenneOrientation={moyenneOrientation}
-          />
+            <Resultats
+              moyenneMath={moyenneMath}
+              moyenneFrancais={moyenneFrancais}
+              moyennePhysique={moyennePhysique}
+              moyenneAnglais={moyenneAnglais}
+              moyenneOrientation={moyenneOrientation}
+            />
 
-          <Moyenne moyenneOrientation={moyenneOrientation} />
+            <Moyenne moyenneOrientation={moyenneOrientation} />
 
-          <div className="mt-4 flex items-center justify-center gap-2 mb-6">
-            <Lock className="text-green-500" size={15} />
-            <span className="text-sm">
-              Toutes tes données restent sur ton appareil et ne sont jamais
-              envoyées en ligne
-            </span>
+            <div className="mt-4 flex items-center justify-center gap-2 mb-6">
+              <Lock className="text-green-500" size={15} />
+              <span className="text-sm">
+                Toutes tes données restent sur ton appareil et ne sont jamais
+                envoyées en ligne
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center justify-center">
-            <button className="bg-linear-to-r from-orange-500 to-orange-300 text-white flex place-items-center gap-2 shadow-sm hover:opacity-85">
+            <button
+              onClick={() => window.print()}
+              className="bg-linear-to-r from-orange-500 to-orange-300 text-white flex place-items-center gap-2 shadow-sm hover:opacity-85"
+            >
               <FileDown size={20} />
               Télécharger les resultats en PDF
             </button>

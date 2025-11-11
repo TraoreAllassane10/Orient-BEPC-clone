@@ -1,4 +1,4 @@
-import { CircleAlert, CircleCheckBig, Divide } from "lucide-react";
+import { CircleAlert, CircleCheckBig } from "lucide-react";
 
 interface MoyenneProps {
   moyenneOrientation: number | undefined;
